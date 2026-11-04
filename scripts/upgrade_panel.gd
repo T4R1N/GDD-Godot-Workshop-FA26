@@ -10,6 +10,7 @@ extends Panel
 
 func _ready() -> void:
 	update_price(0)
+	number.text = str(GameManager.save.upgrades_unlocked[upgrade])
 	GameManager.connect("score_updated", update_price)
 	
 func update_price(score: int) -> void:
@@ -18,5 +19,6 @@ func update_price(score: int) -> void:
 	buy_button.disabled = price > GameManager.save.score
 
 func _on_buy_button_pressed() -> void:
-	GameManager.purchase_upgrade(upgrade)
-	update_price(0)
+	if GameManager.purchase_upgrade(upgrade):
+		update_price(0)
+		number.text = str(GameManager.save.upgrades_unlocked[upgrade])
