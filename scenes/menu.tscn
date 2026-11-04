@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dcmqp8w4fmblv"]
+
+[ext_resource type="Theme" uid="uid://dns1gj84mvh1x" path="res://resources/main_theme.tres" id="1_vjb58"]
+[ext_resource type="Script" uid="uid://8oq1fpl6o5va" path="res://scripts/menu.gd" id="2_con2f"]
+
+[node name="Menu" type="Control" unique_id=2031484746]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vjb58")
+script = ExtResource("2_con2f")
+
+[node name="TitleText" type="Label" parent="." unique_id=1202335885]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("1_vjb58")
+theme_override_font_sizes/font_size = 48
+text = "Badger Idle"
+
+[node name="ButtonContainer" type="VBoxContainer" parent="." unique_id=2062852889]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="ButtonContainer" unique_id=1486670122]
+layout_mode = 2
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="ButtonContainer" unique_id=1098872860]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]

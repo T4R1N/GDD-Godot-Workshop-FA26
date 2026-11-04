@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bchvf85utcbw8"]
+
+[ext_resource type="Theme" uid="uid://dns1gj84mvh1x" path="res://resources/main_theme.tres" id="1_kewym"]
+[ext_resource type="Script" uid="uid://bmfxkid0m3ya" path="res://scenes/score_label.gd" id="2_6c5u0"]
+[ext_resource type="Script" uid="uid://crau1o6sm7s6a" path="res://scripts/clicker.gd" id="3_vcsse"]
+
+[node name="Stage" type="Control" unique_id=1391283135]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_kewym")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=40586595]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -95.0
+offset_right = 95.0
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "0 Wiscite"
+script = ExtResource("2_6c5u0")
+
+[node name="Clicker" type="Button" parent="." unique_id=282086900]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.5
+offset_top = -77.5
+offset_right = 76.5
+offset_bottom = 77.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_vcsse")
+
+[connection signal="pressed" from="Clicker" to="Clicker" method="_on_pressed"]
