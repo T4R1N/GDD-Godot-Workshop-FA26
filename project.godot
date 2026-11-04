@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="GDD-Godot-Workshop"
+config/name="Turnip Tapper"
 run/main_scene="uid://bg5snbmd656bi"
 config/features=PackedStringArray("4.7", "Mobile")
-config/icon="res://resources/icon.svg"
+config/icon="uid://4lymlb328qjf"
 
 [autoload]
 

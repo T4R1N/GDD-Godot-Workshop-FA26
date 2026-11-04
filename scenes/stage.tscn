@@ -2,7 +2,11 @@
 
 [ext_resource type="Theme" uid="uid://dns1gj84mvh1x" path="res://resources/main_theme.tres" id="1_kewym"]
 [ext_resource type="Script" uid="uid://bmfxkid0m3ya" path="res://scenes/score_label.gd" id="2_6c5u0"]
+[ext_resource type="Texture2D" uid="uid://b2m8gc215r3tf" path="res://resources/abstrakt-kunst-hintergrund-bunt-1579282979n6q-3802259374.jpg" id="2_st0q7"]
+[ext_resource type="PackedScene" uid="uid://crkyst7ucwljy" path="res://scenes/upgrade_panel.tscn" id="2_vcsse"]
+[ext_resource type="Texture2D" uid="uid://bbvf3kgp7rat2" path="res://resources/Summer-2010-ClipArt-2-Shovel-3193393150.png" id="3_2so7o"]
 [ext_resource type="Script" uid="uid://crau1o6sm7s6a" path="res://scripts/clicker.gd" id="3_vcsse"]
+[ext_resource type="Texture2D" uid="uid://4lymlb328qjf" path="res://resources/turnip-3605795848.png" id="4_6c5u0"]
 
 [node name="Stage" type="Control" unique_id=1391283135]
 layout_mode = 3
@@ -13,20 +17,87 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_kewym")
 
-[node name="ScoreLabel" type="Label" parent="." unique_id=40586595]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1011370376]
+modulate = Color(0.7121294, 0.7121294, 0.71212935, 1)
+z_index = -1
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_st0q7")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=545772544]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="UpgradePanel" parent="VBoxContainer" unique_id=1999165794 instance=ExtResource("2_vcsse")]
+layout_mode = 2
+
+[node name="UpgradePanel2" parent="VBoxContainer" unique_id=1191368853 instance=ExtResource("2_vcsse")]
+layout_mode = 2
+
+[node name="Name" parent="VBoxContainer/UpgradePanel2" index="0" unique_id=173085593]
+text = "Magic Shovels"
+
+[node name="Description" parent="VBoxContainer/UpgradePanel2" index="2" unique_id=145002925]
+text = "Digs up a turnip every 10 seconds"
+
+[node name="BuyButton" parent="VBoxContainer/UpgradePanel2" index="3" unique_id=1155443981]
+text = "Buy: 50 Turnips"
+
+[node name="TextureRect" parent="VBoxContainer/UpgradePanel2" index="4" unique_id=32758308]
+texture = ExtResource("3_2so7o")
+
+[node name="TappingRegion" type="Control" parent="." unique_id=521517505]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 354.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="TappingRegion" unique_id=617763742]
+layout_mode = 0
+offset_left = 114.0
+offset_right = 707.0
+offset_bottom = 103.0
+
+[node name="ScoreLabel" type="Label" parent="TappingRegion" unique_id=40586595]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -95.0
-offset_right = 95.0
+offset_left = -105.5
+offset_right = 105.5
 offset_bottom = 44.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 48
-text = "0 Wiscite"
+text = "0 Turnips"
+horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("2_6c5u0")
 
-[node name="Clicker" type="Button" parent="." unique_id=282086900]
+[node name="TPSLabel" type="Label" parent="TappingRegion" unique_id=1562443941]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -208.5
+offset_top = 44.0
+offset_right = 208.5
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "0 TPS (Turnips per Second)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Clicker" type="Button" parent="TappingRegion" unique_id=282086900]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -41,4 +112,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_vcsse")
 
-[connection signal="pressed" from="Clicker" to="Clicker" method="_on_pressed"]
+[node name="TextureRect" type="TextureRect" parent="TappingRegion/Clicker" unique_id=1417612422]
+layout_mode = 0
+offset_left = 1.5
+offset_top = -16.5
+offset_right = 160.0
+offset_bottom = 165.8175
+mouse_filter = 2
+texture = ExtResource("4_6c5u0")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TappingRegion/Clicker" unique_id=823410159]
+
+[connection signal="pressed" from="TappingRegion/Clicker" to="TappingRegion/Clicker" method="_on_pressed"]
+
+[editable path="VBoxContainer/UpgradePanel2"]
