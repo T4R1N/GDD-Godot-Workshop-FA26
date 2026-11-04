@@ -1,4 +1,8 @@
 extends Button
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 func _on_pressed() -> void:
+	animation_player.play("RESET")
 	GameManager.clicker_pressed()
+	animation_player.play("tap")

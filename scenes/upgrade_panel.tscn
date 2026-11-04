@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://crkyst7ucwljy"]
 
+[ext_resource type="Script" uid="uid://bldae6dmwldf5" path="res://scripts/upgrade_panel.gd" id="1_0ql3a"]
 [ext_resource type="Texture2D" uid="uid://4lymlb328qjf" path="res://resources/turnip-3605795848.png" id="1_lev6e"]
 
 [node name="UpgradePanel" type="Panel" unique_id=1999165794]
 custom_minimum_size = Vector2(0, 100)
+script = ExtResource("1_0ql3a")
 
 [node name="Name" type="Label" parent="." unique_id=173085593]
 layout_mode = 0
@@ -57,3 +59,5 @@ offset_right = 333.0
 offset_bottom = 41.0
 texture = ExtResource("1_lev6e")
 expand_mode = 1
+
+[connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]

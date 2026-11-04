@@ -2,11 +2,74 @@
 
 [ext_resource type="Theme" uid="uid://dns1gj84mvh1x" path="res://resources/main_theme.tres" id="1_kewym"]
 [ext_resource type="Script" uid="uid://bmfxkid0m3ya" path="res://scenes/score_label.gd" id="2_6c5u0"]
+[ext_resource type="Script" uid="uid://topp6s2rm5lo" path="res://scripts/shovel_timer.gd" id="2_dexii"]
 [ext_resource type="Texture2D" uid="uid://b2m8gc215r3tf" path="res://resources/abstrakt-kunst-hintergrund-bunt-1579282979n6q-3802259374.jpg" id="2_st0q7"]
 [ext_resource type="PackedScene" uid="uid://crkyst7ucwljy" path="res://scenes/upgrade_panel.tscn" id="2_vcsse"]
 [ext_resource type="Texture2D" uid="uid://bbvf3kgp7rat2" path="res://resources/Summer-2010-ClipArt-2-Shovel-3193393150.png" id="3_2so7o"]
 [ext_resource type="Script" uid="uid://crau1o6sm7s6a" path="res://scripts/clicker.gd" id="3_vcsse"]
 [ext_resource type="Texture2D" uid="uid://4lymlb328qjf" path="res://resources/turnip-3605795848.png" id="4_6c5u0"]
+[ext_resource type="Script" uid="uid://bglqrckocev8t" path="res://scripts/reset_save.gd" id="8_1hwpr"]
+
+[sub_resource type="Animation" id="Animation_1hwpr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(158.5, 182.3175)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_st0q7"]
+resource_name = "tap"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.3),
+"transitions": PackedFloat32Array(0.24999996, 1.6245052, 1),
+"update": 0,
+"values": [Vector2(0.18, 0.18), Vector2(0.15, 0.15), Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1hwpr"]
+_data = {
+&"RESET": SubResource("Animation_1hwpr"),
+&"tap": SubResource("Animation_st0q7")
+}
 
 [node name="Stage" type="Control" unique_id=1391283135]
 layout_mode = 3
@@ -16,6 +79,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_kewym")
+
+[node name="ShovelTimer" type="Timer" parent="." unique_id=2041300663]
+wait_time = 10.0
+autostart = true
+script = ExtResource("2_dexii")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1011370376]
 modulate = Color(0.7121294, 0.7121294, 0.71212935, 1)
@@ -35,9 +103,11 @@ grow_vertical = 2
 
 [node name="UpgradePanel" parent="VBoxContainer" unique_id=1999165794 instance=ExtResource("2_vcsse")]
 layout_mode = 2
+upgrade = "TurnipsOnClick"
 
 [node name="UpgradePanel2" parent="VBoxContainer" unique_id=1191368853 instance=ExtResource("2_vcsse")]
 layout_mode = 2
+upgrade = "Shovels"
 
 [node name="Name" parent="VBoxContainer/UpgradePanel2" index="0" unique_id=173085593]
 text = "Magic Shovels"
@@ -113,17 +183,41 @@ grow_vertical = 2
 script = ExtResource("3_vcsse")
 
 [node name="TextureRect" type="TextureRect" parent="TappingRegion/Clicker" unique_id=1417612422]
-layout_mode = 0
-offset_left = 1.5
-offset_top = -16.5
-offset_right = 160.0
-offset_bottom = 165.8175
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.49999
+offset_top = -91.0
+offset_right = 100.817505
+offset_bottom = 91.317505
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(80, 90)
 mouse_filter = 2
 texture = ExtResource("4_6c5u0")
-expand_mode = 1
+expand_mode = 2
+stretch_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TappingRegion/Clicker" unique_id=823410159]
+libraries/ = SubResource("AnimationLibrary_1hwpr")
 
+[node name="ResetSave" type="Button" parent="." unique_id=708977787]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_right = 8.0
+grow_vertical = 0
+text = "Reset Save"
+script = ExtResource("8_1hwpr")
+
+[connection signal="timeout" from="ShovelTimer" to="ShovelTimer" method="_on_timeout"]
 [connection signal="pressed" from="TappingRegion/Clicker" to="TappingRegion/Clicker" method="_on_pressed"]
+[connection signal="pressed" from="ResetSave" to="ResetSave" method="_on_pressed"]
 
 [editable path="VBoxContainer/UpgradePanel2"]
