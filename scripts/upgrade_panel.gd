@@ -14,7 +14,7 @@ func _ready() -> void:
 	GameManager.connect("score_updated", update_price)
 	
 func update_price(score: int) -> void:
-	var price := GameManager.save.prices[upgrade]
+	var price: float = GameManager.save.prices[upgrade]
 	buy_button.text = "Buy: " + str(price) + " Turnips"
 	buy_button.disabled = price > GameManager.save.score
 
