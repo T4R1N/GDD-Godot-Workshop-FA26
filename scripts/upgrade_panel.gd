@@ -9,6 +9,7 @@ extends Panel
 @export_enum("TurnipsOnClick", "Shovels") var upgrade: String
 
 func _ready() -> void:
+	update_price(0)
 	GameManager.connect("score_updated", update_price)
 	
 func update_price(score: int) -> void:
@@ -18,3 +19,4 @@ func update_price(score: int) -> void:
 
 func _on_buy_button_pressed() -> void:
 	GameManager.purchase_upgrade(upgrade)
+	update_price(0)

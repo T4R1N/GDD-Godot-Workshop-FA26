@@ -27,4 +27,4 @@ func clicker_pressed() -> void:
 	add_to_score(save.upgrades_unlocked["TurnipsOnClick"])
 	
 func add_shovel_score() -> void:
-	add_to_score(save.upgrades_unlocked["TurnipsOnClick"])
+	add_to_score(save.upgrades_unlocked["Shovels"])

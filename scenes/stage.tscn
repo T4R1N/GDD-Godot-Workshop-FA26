@@ -81,7 +81,7 @@ grow_vertical = 2
 theme = ExtResource("1_kewym")
 
 [node name="ShovelTimer" type="Timer" parent="." unique_id=2041300663]
-wait_time = 10.0
+wait_time = 5.0
 autostart = true
 script = ExtResource("2_dexii")
 
@@ -113,7 +113,7 @@ upgrade = "Shovels"
 text = "Magic Shovels"
 
 [node name="Description" parent="VBoxContainer/UpgradePanel2" index="2" unique_id=145002925]
-text = "Digs up a turnip every 10 seconds"
+text = "Digs up a turnip every 5 seconds"
 
 [node name="BuyButton" parent="VBoxContainer/UpgradePanel2" index="3" unique_id=1155443981]
 text = "Buy: 50 Turnips"
@@ -142,9 +142,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -105.5
-offset_right = 105.5
-offset_bottom = 44.0
+offset_left = -106.5
+offset_top = 30.0
+offset_right = 104.5
+offset_bottom = 74.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 48
 text = "0 Turnips"
@@ -153,6 +154,7 @@ vertical_alignment = 1
 script = ExtResource("2_6c5u0")
 
 [node name="TPSLabel" type="Label" parent="TappingRegion" unique_id=1562443941]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
